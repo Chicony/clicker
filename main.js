@@ -1,6 +1,9 @@
 let clicks = 0;
 let clickPower = 1;
+let clickCost = 10;
+
 let autoClickers = 0;
+let autoClickCost = 50;
 
 // Загрузка сохранения при старте
 function loadGame() {
@@ -30,6 +33,8 @@ function saveGame() {
 function updateStats() {
     document.getElementById("clickerValueClick").textContent = clickPower;
     document.getElementById("clickerValueAutoclick").textContent = autoClickers;
+    document.getElementById("clickCost").textContent = clickCost;
+    document.getElementById("autoClickCost").textContent = autoClickCost;
 }
 
 // Обновляем счетчик
@@ -47,9 +52,10 @@ document.getElementById("clickerPlazm").addEventListener("click", function() {
 
 // Покупка улучшения
 function buyUpgrade() {
-    if (clicks >= 10) {
-        clicks -= 10;
+    if (clicks >= clickCost) {
+        clicks -= clickCost;
         clickPower += 1;
+        clickCost *= 2;
         updateCounter();
     } else {
         alert("Недостаточно кликов!");
@@ -58,9 +64,10 @@ function buyUpgrade() {
 
 // Автокликер (если есть)
 function buyAutoClicker() {
-    if (clicks >= 50) {
-        clicks -= 50;
+    if (clicks >= autoClickCost) {
+        clicks -= autoClickCost;
         autoClickers += 1;
+        autoClickCost *= 2;
         updateCounter();
         saveGame();
     }
