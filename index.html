@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>... Clicker</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="clicker__reset" onclick="resetGame()">Сбросить игру</div>
+		<div class="clicker">
+			<div class="clicker__stats border">
+				<div class="clicker__title">Характеристика</div>
+				<div class="list__item">
+					<span class="item__name">Клик:</span>
+					<span class="item__value" id="clickerValueClick">1</span>
+				</div>
+				<div class="list__item">
+					<span class="item__name">Автоклик:</span>
+					<span class="item__value" id="clickerValueAutoclick">0</span>
+				</div>
+			</div>
+			<div class="clicker__area-click">
+				<div class="clicker__counter">
+					<span class="counter" id="clickerCount">0</span>
+					плазмы
+				</div>
+				<img id="clickerPlazm" class="clicker__image" src="https://emojicdn.elk.sh/🌀" alt="Плазма">
+			</div>
+			<div class="clicker__area-update border">
+				<div class="clicker__title">Улучшения</div>
+				<div class="list__item" onclick="buyUpgrade()">
+					Улучшение (10 кликов)
+				</div>
+				<div class="list__item" onclick="buyAutoClicker()">
+					Автоклик (50 кликов)
+				</div>
+			</div>
+		</div>
+
+		<script src="main.js"></script>
+	</body>
+</html>
