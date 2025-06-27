@@ -1,6 +1,8 @@
-let clicks = 0;
-let clickPower = 1;
-let autoClickers = 0;
+let stats = {
+	clicks: 0,
+	clickPower: 1,
+	autoClickers: 0
+}
 
 let upgrades = {
 	click: {
@@ -22,9 +24,10 @@ function loadGame() {
 	const savedData = localStorage.getItem('clickerSave');
 	if (savedData) {
 		const gameData = JSON.parse(atob(savedData));
-		clicks = gameData.clicks || 0;
-		clickPower = gameData.clickPower || 1;
-		autoClickers = gameData.autoClickers || 0;
+		stats.clicks = gameData.clicks || 0;
+		stats.clickPower = gameData.clickPower || 1;
+		stats.autoClickers = gameData.autoClickers || 0;
+		upgrades = gameData.upgrades || {click: {price: 10, count: 0, multiplier: 1.3, effect: 1}, autoClick: {price: 50, count: 0, multiplier: 1.5, effect: 0.5}}
 		updateCounter();
 		console.log("Игра загружена!");
 	}
@@ -33,9 +36,10 @@ function loadGame() {
 // Сохранение игры
 function saveGame() {
     const gameData = btoa(JSON.stringify({
-        clicks: clicks,
-        clickPower: clickPower,
-        autoClickers: autoClickers
+        clicks: stats.clicks,
+        clickPower: stats.clickPower,
+        autoClickers: stats.autoClickers,
+				upgrades: upgrades
     }));
     localStorage.setItem('clickerSave', gameData);
     console.log("Игра сохранена!");
@@ -43,21 +47,26 @@ function saveGame() {
 
 // Обновление характеристик
 function updateStats() {
-	document.getElementById("clickerValueClick").textContent = clickPower;
-	document.getElementById("clickerValueAutoclick").textContent = autoClickers;
-	document.getElementById("clickCost").textContent = upgrades["click"].price;
-	document.getElementById("autoClickCost").textContent = upgrades["autoClick"].price;
+	document.getElementById("clickerValueClick").textContent = stats.clickPower;
+	document.getElementById("clickerValueAutoclick").textContent = stats.autoClickers;
+	
+	document.getElementById("clickCount").textContent = `x${upgrades['click'].count}`;
+	document.getElementById("autoClickCount").textContent = `x${upgrades['autoClick'].count}`;
+
+	document.getElementById("clickCost").textContent = getPrice("click");
+	document.getElementById("autoClickCost").textContent = getPrice("autoClick");
 }
 
 // Обновляем счетчик
 function updateCounter() {
-    document.getElementById("clickerCount").textContent = clicks;
+    document.getElementById("clickerCount").textContent = stats.clicks;
     updateStats();
 }
 
 // Клик по плазме
 document.getElementById("clickerMainObject").addEventListener("click", function() {
-    clicks += clickPower;
+    stats.clicks += stats.clickPower;
+		updateCounter();
     saveGame();
 });
 
@@ -74,14 +83,15 @@ function buyUpgrade(upgradeType) {
 	const upg = upgrades[upgradeType];
 	const price = getPrice(upgradeType);
 
-	if (clicks >= price) {
-		clicks -= price;
+	if (stats.clicks >= price) {
+		stats.clicks -= price;
 		upg.count++;
+		upg.price = price;
 		
 		if (upgradeType === "click") {
-			clickPower += upg.effect;
-		} else if (upgradeType === "autoClicker") {
-			autoClickers += upg.effect;
+			stats.clickPower += upg.effect;
+		} else if (upgradeType === "autoClick") {
+			stats.autoClickers += upg.effect;
 		}
 		
 		updateCounter();
@@ -90,7 +100,7 @@ function buyUpgrade(upgradeType) {
 
 // Автоклики каждую секунду
 setInterval(function() {
-    clicks += autoClickers;
+    stats.clicks += stats.autoClickers;
     updateCounter();
 }, 1000);
 
@@ -98,9 +108,9 @@ setInterval(function() {
 function resetGame() {
     if (confirm("Точно сбросить прогресс?")) {
         localStorage.removeItem('clickerSave');
-        clicks = 0;
-        clickPower = 1;
-        autoClickers = 0;
+        stats.clicks = 0;
+        stats.clickPower = 1;
+        stats.autoClickers = 0;
         updateCounter();
     }
 }
