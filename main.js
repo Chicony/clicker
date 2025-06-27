@@ -111,6 +111,7 @@ function resetGame() {
         stats.clicks = 0;
         stats.clickPower = 1;
         stats.autoClickers = 0;
+				upgrades = {click: {price: 10, count: 0, multiplier: 1.3, effect: 1}, autoClick: {price: 50, count: 0, multiplier: 1.5, effect: 0.5}}
         updateCounter();
     }
 }
