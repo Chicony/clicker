@@ -1,81 +1,153 @@
+:root {
+	--main-color: #66bb6a;
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	user-select: none;
+	touch-action: none;
 }
 
 body {
-	font-family: Arial, sans-serif;
+	min-width: 320px;
 	height: 100vh;
-	background-color: darkseagreen;
+	font-family: Arial, sans-serif;
+	background-color: var(--main-color);
 }
 
-.clicker__reset {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	padding: 4px 10px;
-	background-color: #bb4848;
-	border-radius: 4px;
-}
-
-.clicker__reset:hover {
-	cursor: pointer;
-	background-color: #a53f3f;
+.image {
+	width: 100%;
+	height: auto;
 }
 
 .clicker {
 	display: grid;
-	justify-content: center;
-	grid-template-columns: 200px 400px 200px;
-	grid-template-rows: 400px;
-	margin: 100px auto;
-	width: fit-content;
+	grid-template-columns: 1fr 35%;
+	grid-template-rows: 40px 1fr 40px;
+	grid-template-areas: 
+		"header header"
+		"main column"
+		"footer footer";
+	gap: 20px;
+	height: 100%;
 }
 
-.clicker__title	{
-	font-weight: 600;
-	padding: 10px 0;
-	border-bottom: 1px solid #000;
-	text-align: center;
+/* Контейнер шапки */
+.clicker__header {
+	display: grid;
+	grid-area: header;
+	grid-template-columns: inherit;
+	border-bottom: 3px solid brown;
+	border-radius: 0 0 10px 10px;
 }
 
-.clicker__stats .list__item{
-	padding: 4px 10px;
+.clicker__stats,
+.clicker__settings {
 	display: flex;
-	justify-content: space-between;
-}
-
-.clicker__stats .list__item .item__value{
-	font-weight: 600;
-}
-
-.clicker__area-click {
-	display: flex;
-	flex-direction: column;
+	justify-content: flex-end;
 	align-items: center;
-	justify-content: center;
+	padding: 0 10px;
+	gap: 14px;
 }
 
-.clicker__area-click .clicker__image {
-	width: 200px;
-	height: 200px;
+/* Блок характеристики в шапке */
+.clicker__stats {
+	grid-column: 1 / 2;
+}
+
+/* Блок настроек в шапке */
+.clicker__settings {
+	grid-column: 2 / 3;
+	border-left: 3px solid brown;
+}
+
+.clicker__settings .clicker__reset{
+	background-color: #d54a4a;
+    padding: 4px 8px;
+    border-radius: 4px;
+	text-transform: uppercase;
+	font: 600 12px sans-serif;
+}
+
+.clicker__settings .clicker__reset:hover{
+	filter: brightness(85%);
 	cursor: pointer;
 }
 
-.clicker__area-update .list__item{
-	border-bottom: 1px solid #000;
+/* Основной блок нажатия */
+.clicker__main {
+	display: grid;
+	place-items: center;
+	grid-area: main;
+}
+
+.clicker__main .clicker__container__counter {
+	text-align: center;
+	margin-bottom: 30px;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, .6);
+	border-radius: 10px;
+}
+
+.clicker__main .clicker__container__image {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+    overflow: hidden;
+	transition: transform 0.1s ease;
+}
+
+.clicker__main .clicker__container__image:active {
+	transform: scale(0.95);
+}
+
+.clicker__main .clicker__container__image .clicker__image {
+	width: 100%;
+	cursor: pointer;
+}
+
+/* Блок колонки улучшений */
+.clicker__column {
+	grid-area: column;
+	border: 3px solid brown;
+	border-right: none;
+	border-radius: 10px 0 0 10px;
+	overflow: hidden;
+}
+
+.clicker__column .clicker__item{
+	display: flex;
+	justify-content: space-between;
 	padding: 10px;
 }
 
-.clicker__area-update .list__item:hover{
+.clicker__column .clicker__item:hover{
 	background-color: rgba(0, 0, 0, .2);
 	cursor: pointer;
 }
 
-/* Модификации классов */
-.border {
-	border: 1px solid #000;
-	border-radius: 10px;
-	overflow: hidden;
+.clicker__column .clicker__item .item__left,
+.clicker__column .clicker__item .item__right{
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.clicker__item .item__left .item__image{
+	width: 22px;
+	height: 22px;
+}
+
+.clicker__item .item__right .item__image{
+	width: 16px;
+	height: 16px;
+}
+
+/* Контайнер подвала */
+.clicker__footer {
+	grid-area: footer;
+	border-top: 3px solid brown;
+	border-radius: 10px 10px 0 0;
 }

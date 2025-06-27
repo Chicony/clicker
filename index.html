@@ -2,40 +2,70 @@
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 		<title>... Clicker</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<div class="clicker__reset" onclick="resetGame()">Сбросить игру</div>
 		<div class="clicker">
-			<div class="clicker__stats border">
-				<div class="clicker__title">Характеристика</div>
-				<div class="list__item">
-					<span class="item__name">Клик:</span>
-					<span class="item__value" id="clickerValueClick">1</span>
+			<div class="clicker__header">
+				<div class="clicker__stats">
+					<div class="list__item">
+						<span class="item__name">Клик:</span>
+						<span class="item__value" id="clickerValueClick">1</span>
+					</div>
+					<div class="list__item">
+						<span class="item__name">Автоклик:</span>
+						<span class="item__value" id="clickerValueAutoclick">0</span>
+					</div>
 				</div>
-				<div class="list__item">
-					<span class="item__name">Автоклик:</span>
-					<span class="item__value" id="clickerValueAutoclick">0</span>
+				<div class="clicker__settings">
+					<div class="clicker__reset" onclick="resetGame()">Reset</div>
 				</div>
 			</div>
-			<div class="clicker__area-click">
+			<div class="clicker__main">
 				<div class="clicker__counter">
-					<span class="counter" id="clickerCount">0</span>
-					плазмы
-				</div>
-				<img id="clickerPlazm" class="clicker__image" src="https://emojicdn.elk.sh/🌀" alt="Плазма">
-			</div>
-			<div class="clicker__area-update border">
-				<div class="clicker__title">Улучшения</div>
-				<div class="list__item" onclick="buyUpgrade()">
-					Улучшение (<span id="clickCost"></span> кликов)
-				</div>
-				<div class="list__item" onclick="buyAutoClicker()">
-					Автоклик (<span id="autoClickCost"></span> кликов)
+					<div class="clicker__container__counter">
+						<span class="clicker__title" id="clickerCount">0</span> монет
+					</div>
+					<div class="clicker__container__image">
+						<img id="clickerMainObject" class="clicker__image image" src="money.png" alt="Money" class="clicker__main__image">
+					</div>
 				</div>
 			</div>
+			<div class="clicker__column">
+				<div class="clicker__item" onclick="buyUpgrade('click')">
+					<div class="item__left">
+						<div class="item__image">
+							<img src="click.png" class="image" alt="Улучшение">
+						</div>
+						<div class="item__name">Клик</div>
+						<div class="item__count">0</div>
+					</div>
+					<div class="item__right">
+						<div class="item__image">
+							<img src="money.png" class="image" alt="Money">
+						</div>
+						<div class="item__price" id="clickCost">10</div>
+					</div>
+				</div>
+				<div class="clicker__item" onclick="buyUpgrade('autoClick')">
+					<div class="item__left">
+						<div class="item__image">
+							<img src="autoclick.png" class="image" alt="Улучшение">
+						</div>
+						<div class="item__name">Автоклик</div>
+						<div class="item__count">0</div>
+					</div>
+					<div class="item__right">
+						<div class="item__image">
+							<img src="money.png" class="image" alt="Money">
+						</div>
+						<div class="item__price" id="autoClickCost">50</div>
+					</div>
+				</div>
+			</div>
+			<div class="clicker__footer"></div>
 		</div>
 
 		<script src="main.js"></script>
