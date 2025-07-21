@@ -1,5 +1,6 @@
 :root {
 	--main-color: #001032;
+	--main-font-color: #e6eaf6;
 }
 
 * {
@@ -15,7 +16,7 @@ body {
 	height: 100vh;
 	font-family: Arial, sans-serif;
 	background-color: var(--main-color);
-	color: #e6eaf6;
+	color: var(--main-font-color);
 }
 
 .image {
@@ -35,45 +36,12 @@ body {
 	height: 100%;
 }
 
-
-/* Стили для карты территорий */
-.clicker__map {
-	display: grid;
-	gap: 5px;
-	margin: 20px auto;
-}
-
-.territory {
-	aspect-ratio: 1;
-	background: #85bce9;
-	border: 2px solid #333;
-	border-radius: 5px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	transition: all 0.3s;
-	font-weight: bold;
-}
-
-.territory.captured {
-	background: #60d965; /* Зелёный для захваченных */
-}
-.territory.locked {
-	background: #d98a8a; /* Серый для заблокированных */
-	cursor: not-allowed;
-}
-
-.territory:hover {
-	transform: scale(1.05);
-}
-
 /* Контейнер шапки */
 .clicker__header {
 	display: grid;
 	grid-area: header;
 	grid-template-columns: inherit;
-	border-bottom: 3px solid #eeb07d;
+	border-bottom: 1px solid var(--main-font-color);
 	border-radius: 0 0 10px 10px;
 }
 
@@ -91,10 +59,20 @@ body {
 	grid-column: 1 / 2;
 }
 
+.clicker__stats .list__item {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.clicker__stats .list__item .item__image {
+	width: 24px;
+}
+
 /* Блок настроек в шапке */
 .clicker__settings {
 	grid-column: 2 / 3;
-	border-left: 3px solid #eeb07d;
+	border-left: 1px solid var(--main-font-color);
 }
 
 .clicker__settings .clicker__reset{
@@ -145,7 +123,7 @@ body {
 /* Блок колонки улучшений */
 .clicker__column {
 	grid-area: column;
-	border: 3px solid #eeb07d;
+	border: 1px solid var(--main-font-color);
 	border-right: none;
 	border-radius: 10px 0 0 10px;
 	overflow: hidden;
@@ -182,6 +160,14 @@ body {
 /* Контайнер подвала */
 .clicker__footer {
 	grid-area: footer;
-	border-top: 3px solid #eeb07d;
+	border-top: 1px solid var(--main-font-color);
 	border-radius: 10px 10px 0 0;
+	text-align: center;
+	padding: 10px;
+}
+
+.clicker__footer .footer__copyright {
+	color: var(--main-font-color);
+	text-decoration: none;
+	font-style: italic;
 }

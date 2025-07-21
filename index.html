@@ -11,12 +11,12 @@
 			<div class="clicker__header">
 				<div class="clicker__stats">
 					<div class="list__item">
-						<span class="item__name">Клик:</span>
-						<span class="item__value" id="clickerValueClick">1</span>
+						<img src="assets/image/gang.png" class="item__image" alt="Gang group">
+						<span class="item__value" id="clickerValueGang">0</span>
 					</div>
 					<div class="list__item">
-						<span class="item__name">Автоклик:</span>
-						<span class="item__value" id="clickerValueAutoclick">0</span>
+						<img src="assets/image/money.png" class="item__image" alt="Money">
+						<span class="item__value" id="clickerValueMoney">0</span>
 					</div>
 				</div>
 				<div class="clicker__settings">
@@ -26,47 +26,48 @@
 			<div class="clicker__main">
 				<div class="clicker__counter">
 					<div class="clicker__container__counter">
-						<span class="clicker__title" id="clickerCount">0</span> монет
+						<span class="clicker__title" id="clickerCount">0</span> репутация
 					</div>
 					<div class="clicker__container__image">
-						<img id="clickerMainObject" class="clicker__image image" src="assets/image/money.png" alt="Money" class="clicker__main__image">
+						<img id="clickerMainObject" class="clicker__image image" src="assets/image/clicker.png" alt="Main image" class="clicker__main__image">
 					</div>
 				</div>
-				<div class="clicker__map" id="clickerMap"></div>
 			</div>
 			<div class="clicker__column">
 				<div class="clicker__item" onclick="buyUpgrade('click')">
 					<div class="item__left">
 						<div class="item__image">
-							<img src="assets/image/click.png" class="image" alt="Улучшение">
+							<img src="assets/image/gang.png" class="image" alt="Улучшение">
 						</div>
-						<div class="item__name">Клик</div>
+						<div class="item__name">Люди</div>
 						<div class="item__count" id="clickCount">0</div>
 					</div>
 					<div class="item__right">
 						<div class="item__image">
-							<img src="assets/image/money.png" class="image" alt="Money">
+							<img src="assets/image/clicker.png" class="image" alt="Money">
 						</div>
-						<div class="item__price" id="clickCost">10</div>
+						<div class="item__price" id="clickCost">50</div>
 					</div>
 				</div>
 				<div class="clicker__item" onclick="buyUpgrade('autoClick')">
 					<div class="item__left">
 						<div class="item__image">
-							<img src="assets/image/autoclick.png" class="image" alt="Улучшение">
+							<img src="assets/image/money.png" class="image" alt="Улучшение">
 						</div>
-						<div class="item__name">Автоклик</div>
+						<div class="item__name">Деньги</div>
 						<div class="item__count" id="autoClickCount">0</div>
 					</div>
 					<div class="item__right">
 						<div class="item__image">
-							<img src="assets/image/money.png" class="image" alt="Money">
+							<img src="assets/image/gang.png" class="image" alt="Gang">
 						</div>
 						<div class="item__price" id="autoClickCost">50</div>
 					</div>
 				</div>
 			</div>
-			<div class="clicker__footer"></div>
+			<div class="clicker__footer">
+				<a target="_blank" href="https://t.me/Chicony2753" class="footer__copyright">@Chicony</a>
+			</div>
 		</div>
 
 		<script src="main.js"></script>
